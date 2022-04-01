@@ -1,0 +1,53 @@
+.col-md-3 {
+    padding: 0;
+}
+.drawer {
+    background-color: #1e1e1e;        
+    color: white;
+    height: 100%;
+}
+
+.container-fluid {
+    padding-left: 0px;
+}
+
+.drawer .button-wide {    
+    width: 100%;
+    border-radius: 0;         
+    margin-top: 15px;
+    background-color: #2a2a2a;
+}
+
+.offcanvas-start {
+    top: 80px;
+}
+
+.navbar-toggler {
+    border: none;
+    padding: 0;
+    padding-right: 15px;
+    line-height: 2;
+    margin: 0;
+    border: 3px solid #2a2a2a;
+    border-radius: 0 !important;
+    background-color: #2a2a2a;
+}
+
+.navbar-light .navbar-toggler {
+    color: transparent;
+    border-color: transparent;
+}
+
+.drawer-button {
+    left: 399px;    
+    visibility: visible;
+    background-color: #2a2a2a;
+}
+
+.offcanvas-backdrop {
+    background-color: transparent !important;
+}
+
+fa-icon {
+    color: white;
+}

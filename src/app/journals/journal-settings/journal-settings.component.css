@@ -1,0 +1,46 @@
+a, button {
+    margin-right: 12px;
+    width: 125px;    
+}
+
+a {
+    margin-right: 25px;
+}
+
+.form-label {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    margin-right: 10px;
+    font-size: x-large;
+    font-weight: 600;    
+}
+
+.form-control-inline-group {
+    display: inline;    
+}
+
+.form-control-inline {
+    display: inherit;
+    max-width: 50%;
+}
+
+.form-control-inline-group button {
+    margin-left: 15px;    
+    margin-bottom: 5px;
+}
+
+.form-footer {
+    margin-top: 50px;
+}
+
+.card {
+    margin-top: 15px;
+    background-color: #1e1e1e;
+    border: none;
+    color: white;
+}
+
+.card-header {
+    background: #1e1e1e;   
+    border-bottom: 5px solid #121212;        
+}
