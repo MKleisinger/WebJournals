@@ -1,0 +1,26 @@
+<div class="container">
+    <div *ngIf="journal" class="card"> 
+        <div class="card-header">
+            <h1>{{this.journal.name}}</h1>
+            <h5>{{ this.journal.subject }}</h5>
+        </div>   
+        <div class="card-body">      
+            <div class="form"> 
+                <div class="mb-3">                    
+                    <div *ngFor="let bullet of journal.bullets">
+                        <label for="bullet">{{ bullet.label }}</label>
+                        <input id="bullet" name="bullet" class="form-control" (ngModel)="entryForm.tags" />
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="journalEntryText" class="form-label">Summary</label>
+                    <textarea class="form-control" id="journalEntryText" rows="10" [(ngModel)]="entryForm.entry"></textarea>
+                  </div>
+            </div>
+        </div>     
+        <div class="card-footer row justify-content-end">
+            <button class="btn btn-danger" (click)="onEntryCanceled()">Cancel</button>
+            <button class="btn btn-primary" (click)="onEntryComplete()">Commit</button>
+        </div>       
+    </div>
+</div>
