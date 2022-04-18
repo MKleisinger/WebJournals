@@ -6,13 +6,15 @@ import { JournalSettingsComponent } from './journal-settings/journal-settings.co
 import { JournalManagerComponent } from './journal-manager/journal-manager.component';
 import { FormsModule } from '@angular/forms';
 import { JournalComponent } from './journal/journal.component';
+import { JournalEntryComponent } from './journal-entry/journal-entry.component';
 
 
 @NgModule({
   declarations: [
     JournalManagerComponent,
     JournalSettingsComponent,
-    JournalComponent
+    JournalComponent,
+    JournalEntryComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,7 @@ import { JournalComponent } from './journal/journal.component';
     JournalsRoutingModule
   ],
   exports: [
-    
+
   ]
 })
 export class JournalsModule { }
