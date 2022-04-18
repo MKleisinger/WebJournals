@@ -18,8 +18,7 @@ export class JournalService {
     const journal = this.journals.find(j => j.name === id);
     if(journal) {
       return journal;
-    }    
-
+    }
     throw new Error(`JournalID: ${id} not found.`);
   }
 

@@ -12,15 +12,15 @@ import { JournalService } from '../journal.service';
 export class JournalEntryComponent implements OnInit {
 
   constructor(
-    private journalService: JournalService, 
-    private route: ActivatedRoute, 
+    private journalService: JournalService,
+    private route: ActivatedRoute,
     private router: Router
   ) { }
 
   public journal!: Journal;
-  public entryForm: JournalEntry = { 
+  public entryForm: JournalEntry = {
     timestamp: Date.now(),
-    tags: [],    
+    tags: [],
     entry: ""
   }
 
@@ -28,17 +28,13 @@ export class JournalEntryComponent implements OnInit {
   private journalRoute: string = this.baseRoute;
 
   ngOnInit(): void {
-    // use the journal service to get the journal by id
-    const journalID = this.route.snapshot.params['id'];       
-    this.journalRoute += journalID;
+    const journalID = this.route.snapshot.params['id'];
+    this.journalRoute += `/${journalID}`;
     this.journal = this.journalService.getJournal(journalID);
-
-    if(this.journal) {
-      Object.assign(this.entryForm, this.journal.entries[0]);
-    }
   }
 
   public onEntryComplete(): void {
+    this.journal.entries.push(this.entryForm);
     this.journalService.updateJournal(this.journal);
     this.router.navigate([this.journalRoute]);
   }
@@ -46,5 +42,4 @@ export class JournalEntryComponent implements OnInit {
   public onEntryCanceled(): void {
     this.router.navigate([this.journalRoute]);
   }
-
 }
