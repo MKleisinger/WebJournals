@@ -15,20 +15,20 @@ export class JournalSettingsComponent implements OnInit {
   constructor(private journalService: JournalService, private router: Router) { }
 
   addIcon = faPlus;
-  
+
   journal: Journal = {
     name: "",
     subject: "",
     bullets: [],
-    entries: []  
+    entries: []
   };
 
   ngOnInit(): void {
   }
 
   onBulletAdd(): void {
-    const bullet: JournalBullet = { label: "New Bullet", tag: "" }
-    this.journal.bullets.push(bullet)      
+    const bullet: JournalBullet = { label: "New Bullet" };
+    this.journal.bullets.push(bullet)
   }
 
   removeBullet(bullet: JournalBullet): void {

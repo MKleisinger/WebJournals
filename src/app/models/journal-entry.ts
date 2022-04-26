@@ -1,5 +1,7 @@
+import { JournalTag } from "./journal-tag";
+
 export interface JournalEntry {
     timestamp: number;
-    tags: string[];
+    tags: JournalTag[];
     entry: string;
 }

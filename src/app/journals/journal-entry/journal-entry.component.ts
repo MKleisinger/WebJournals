@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Journal } from 'src/app/models/journal';
 import { JournalEntry } from 'src/app/models/journal-entry';
+import { JournalTag } from 'src/app/models/journal-tag';
 import { JournalService } from '../journal.service';
 
 @Component({
@@ -31,6 +32,11 @@ export class JournalEntryComponent implements OnInit {
     const journalID = this.route.snapshot.params['id'];
     this.journalRoute += `/${journalID}`;
     this.journal = this.journalService.getJournal(journalID);
+
+    this.journal.bullets.forEach(bullet => {
+      const tag: JournalTag = { bullet: bullet, tag: ""};
+      this.entryForm.tags.push(tag);
+    });
   }
 
   public onEntryComplete(): void {

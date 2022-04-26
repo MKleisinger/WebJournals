@@ -1,7 +1,7 @@
 <div class="container">
     <div class="card">
-        <h1 class="card-header">Journal Settings</h1> 
-        <div class="card-body">        
+        <h1 class="card-header">Journal Settings</h1>
+        <div class="card-body">
         <div class="row">
             <div class="form">
                 <div class="mb-3">
@@ -13,21 +13,21 @@
                     <input type="text" class="form-control" id="subjectName" placeholder="e.g. Work Day" [(ngModel)]="journal.subject">
                 </div>
                 <div class="mb-3">
-                    <p for="bullets" class="form-label">Custom Bullets</p>            
-                    <button type="button" id="bullets" class="btn btn-primary" (click)="onBulletAdd()">Add<fa-icon [icon]="addIcon"></fa-icon></button>       
-                    <div *ngFor="let bullet of journal.bullets">   
+                    <p for="bullets" class="form-label">Custom Bullets</p>
+                    <button type="button" id="bullets" class="btn btn-primary" (click)="onBulletAdd()">Add<fa-icon [icon]="addIcon"></fa-icon></button>
+                    <div *ngFor="let bullet of journal.bullets">
                         <div class="form-control-inline-group">
                             <label class="form-label">Bullet Tag</label>
-                            <input type="text" class="form-control form-control-inline" id="bullet" placeholder="e.g. Difficulty" [(ngModel)]="bullet.label">                
-                            <button type="button" class="btn btn-danger form-control-inline" (click)="removeBullet(bullet)">Remove</button>                
-                        </div>             
+                            <input type="text" class="form-control form-control-inline" id="bullet" placeholder="e.g. Difficulty" [(ngModel)]="bullet.label">
+                            <button type="button" class="btn btn-danger form-control-inline" (click)="removeBullet(bullet)">Remove</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row justify-content-end form-footer">           
+        <div class="row justify-content-end form-footer">
             <a [routerLink]="['journals']"><button type="button" class="btn btn-danger">Cancel</button></a>
-            <button type="button" class="btn btn-primary" (click)="onSettingsComplete()">Done</button>                
+            <button type="button" class="btn btn-primary" (click)="onSettingsComplete()">Done</button>
         </div>
     </div>
     </div>

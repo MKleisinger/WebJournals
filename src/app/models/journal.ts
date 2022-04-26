@@ -4,6 +4,6 @@ import { JournalEntry } from "./journal-entry";
 export interface Journal {
     name: string;
     subject: string;
-    bullets: JournalBullet[];    
+    bullets: JournalBullet[];
     entries: JournalEntry[];
 }

@@ -7,9 +7,9 @@
         <div class="card-body">
             <div class="form">
                 <div class="mb-3">
-                    <div *ngFor="let bullet of journal.bullets">
-                        <label for="bullet">{{ bullet.label }}</label>
-                        <input id="bullet" name="bullet" class="form-control" (ngModel)="entryForm.tags" />
+                    <div *ngFor="let tag of entryForm.tags">
+                        <label for="bullet">{{ tag.bullet.label }}</label>
+                        <input id="bullet" name="bullet" class="form-control" (ngModel)="tag.tag" />
                     </div>
                 </div>
                 <div class="mb-3">
