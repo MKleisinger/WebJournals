@@ -1,37 +1,76 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams, HttpParamsOptions } from '@angular/common/http';
+import { Observable, throwError, finalize, of, from, EMPTY, BehaviorSubject } from 'rxjs';
+import { catchError, map, mergeMap, retry, shareReplay, take, tap } from 'rxjs/operators';
 import { Journal } from '../models/journal';
+import { JournalApiService } from '../api/journal-api.service';
+import { Statement } from '@angular/compiler';
+import { JournalEntry } from '../models/journal-entry';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JournalService {
 
-  constructor() { }
+  constructor(private journalApi: JournalApiService) {
 
-  public journals: Journal[] = [];
-
-  public addJournal(journal: Journal) {
-    this.journals.push(journal);
   }
 
-  public getJournal(id: string): Journal {
-    const journal = this.journals.find(j => j.name === id);
-    if(journal) {
-      return journal;
-    }
-    throw new Error(`JournalID: ${id} not found.`);
+  private journalsRefresh = new BehaviorSubject<void>(undefined);
+  public journals$: Observable<Journal[]> = this.journalsRefresh
+    .pipe(
+      mergeMap(() => this.journalApi.getAllJournals()),
+      shareReplay(1)
+    );
+
+  public addJournal(journal: Journal): Observable<Journal> {
+    return this.journalApi.createJournal(journal)
+      .pipe(
+        tap(() => this.journalsRefresh.next())
+      );
   }
 
-  public updateJournal(journal: Journal): void {
-    let copy = this.getJournal(journal.name);
-    let index = this.journals.findIndex(j => j === copy);
+  public getJournal(journalID: string) : Observable<Journal> {
+    return this.journals$
+      .pipe(
+        map(journals => journals.find(j => j.id === journalID) as Journal),
+        tap(results => console.log(results))
+      )
+  }
 
-    if(index >= 0) {
-      Object.assign(copy, journal);
-      this.journals[index] = copy;
+  public updateJournal(journal: Journal) : void {
+    this.journalApi.updateJournal(journal).subscribe({
+      next: () => this.journalsRefresh.next(),
+      error: (err) => console.log(err),
+      complete: () => console.log("completed")
+    });
+  }
+
+  private journalEntriesRefresh = new BehaviorSubject<void>(undefined);
+  public getJournalEntries(journalId: string) : Observable<JournalEntry[]> {
+    let entries$ = this.journalEntriesRefresh
+      .pipe(
+        mergeMap(() => this.journalApi.getJournalEntries(journalId)),
+        shareReplay(1)
+      );
+
+    return entries$;
+  }
+
+  public addJournalEntry(journalEntry: JournalEntry) : void {
+    if(!journalEntry.id) {
+      this.journalApi.createJournalEntry(journalEntry).subscribe({
+        next: () => this.journalEntriesRefresh.next(),
+        error: (err) => console.log(err),
+        complete: () => console.log("completed")
+      });
     }
     else {
-      throw new Error(`Failed to update journal. JournalID: ${journal.name} does not exist.`);
+      this.journalApi.updateJournalEntry(journalEntry).subscribe({
+        next: () => this.journalEntriesRefresh.next(),
+        error: (err) => console.log(err),
+        complete: () => console.log("completed")
+      });
     }
   }
 }

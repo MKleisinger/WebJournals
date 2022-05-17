@@ -17,10 +17,10 @@ export class JournalSettingsComponent implements OnInit {
   addIcon = faPlus;
 
   journal: Journal = {
-    name: "",
+    id: "",
+    title: "",
     subject: "",
-    bullets: [],
-    entries: []
+    bullets: []
   };
 
   ngOnInit(): void {
@@ -38,7 +38,8 @@ export class JournalSettingsComponent implements OnInit {
 
   onSettingsComplete(): void {
     console.log("fired settings complete");
-    this.journalService.addJournal(this.journal);
-    this.router.navigate([`journals/journal/${this.journal.name}`]);
+    this.journalService.addJournal(this.journal).subscribe(result => {
+      this.router.navigate([`journals/${result.id}`]);
+    });
   }
 }
