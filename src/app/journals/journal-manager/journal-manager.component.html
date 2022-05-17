@@ -19,8 +19,8 @@
                     <!-- /* Opens a journal setup page */ -->
                     <a data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" [routerLink]="['settings']"><button type="button" class="btn btn-primary button-wide">New<fa-icon [icon]="faPlus"></fa-icon></button></a>
                   </li>
-                  <li *ngFor="let journal of journalService.journals">
-                    <a data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"><button type="button" class="btn btn-primary button-wide" (click)="onJournalClicked(journal.name)">{{journal.name}}<fa-icon [icon]="faBook"></fa-icon></button></a>
+                  <li *ngFor="let journal of this.journals">
+                    <a data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"><button type="button" class="btn btn-primary button-wide" (click)="onJournalClicked(journal.id)">{{journal.title}}<fa-icon [icon]="faBook"></fa-icon></button></a>
                   </li>
                 </ul>
               </div>

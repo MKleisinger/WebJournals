@@ -1,7 +1,9 @@
 import { JournalTag } from "./journal-tag";
 
 export interface JournalEntry {
-    timestamp: number;
+    id: string;
+    journalId: string;
+    timeStamp: Date;
     tags: JournalTag[];
     entry: string;
 }

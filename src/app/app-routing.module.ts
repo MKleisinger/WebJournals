@@ -6,11 +6,11 @@ import { JournalSettingsComponent } from './journals/journal-settings/journal-se
 import { JournalComponent } from './journals/journal/journal.component';
 
 const routes: Routes = [
-  { path : "journals", component : JournalManagerComponent,
+  { path : "journals", component : JournalManagerComponent, runGuardsAndResolvers: "always",
     children: [
       { path: "settings", component: JournalSettingsComponent },
-      { path: "journal/:id", component: JournalComponent },
-      { path: "journal/:id/entry", component: JournalEntryComponent, pathMatch: "full" }
+      { path: ":id", component: JournalComponent },
+      { path: ":id/entry", component: JournalEntryComponent, pathMatch: "full" }
     ]
   },
   { path: "", redirectTo: "/journals", pathMatch: "full" },
@@ -18,7 +18,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -16,14 +16,19 @@ export class JournalManagerComponent implements OnInit {
     private router: Router
   ) { }
 
-  drawerIcon!: IconDefinition;  
+  drawerIcon!: IconDefinition;
   faPlus = faPlus;
   faArrowRight = faArrowRight;
-  faArrowLeft = faArrowLeft;  
+  faArrowLeft = faArrowLeft;
   faBook = faBook;
+  journals: Journal[] = [];
 
-  ngOnInit(): void {
-    this.drawerIcon = faArrowRight;   
+  ngOnInit() {
+    this.drawerIcon = faArrowRight;
+    this.journalService.journals$
+      .subscribe(data => {
+        this.journals = data;
+      });
   }
 
   onDrawerHide() {
@@ -35,6 +40,7 @@ export class JournalManagerComponent implements OnInit {
   }
 
   onJournalClicked(journalId: string): void {
-    this.router.navigate([`journals/journal/${journalId}`]);
+    console.log(`JournalID: ${journalId} clicked`);
+    this.router.navigate([`journals/${journalId}`]);
   }
 }
