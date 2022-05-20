@@ -33,8 +33,7 @@ export class JournalService {
   public getJournal(journalID: string) : Observable<Journal> {
     return this.journals$
       .pipe(
-        map(journals => journals.find(j => j.id === journalID) as Journal),
-        tap(results => console.log(results))
+        map(journals => journals.find(j => j.id === journalID) as Journal)
       )
   }
 

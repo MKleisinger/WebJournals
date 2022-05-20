@@ -40,7 +40,6 @@ export class JournalManagerComponent implements OnInit {
   }
 
   onJournalClicked(journalId: string): void {
-    console.log(`JournalID: ${journalId} clicked`);
     this.router.navigate([`journals/${journalId}`]);
   }
 }

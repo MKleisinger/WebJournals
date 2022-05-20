@@ -37,7 +37,6 @@ export class JournalSettingsComponent implements OnInit {
   }
 
   onSettingsComplete(): void {
-    console.log("fired settings complete");
     this.journalService.addJournal(this.journal).subscribe(result => {
       this.router.navigate([`journals/${result.id}`]);
     });

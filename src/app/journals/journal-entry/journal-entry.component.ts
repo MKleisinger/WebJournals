@@ -43,11 +43,9 @@ export class JournalEntryComponent implements OnInit {
 
     this.route.queryParams.subscribe(params => {
       if(params['entryId']) {
-        console.log("found params");
         let entryId = params['entryId'];
         this.journalService.getJournalEntry(this.journal.id, entryId).subscribe(entry => {
           this.entryForm = entry;
-          console.log(this.entryForm);
         });
       }
     });
@@ -61,7 +59,6 @@ export class JournalEntryComponent implements OnInit {
   }
 
   public onEntryComplete(): void {
-    console.log(this.entryForm);
     this.journalService.addJournalEntry(this.entryForm);
     this.router.navigate([this.journalRoute]);
   }
