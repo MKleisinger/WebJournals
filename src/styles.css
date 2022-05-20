@@ -9,10 +9,14 @@ a {
     text-decoration: none;
 }
 
-fa-icon {    
-    margin-left: 10px;
+ol {
+  margin-top: 15px;
+  list-style: none;
 }
 
+fa-icon {
+    margin-left: 10px;
+}
 
 .btn-primary {
     background-color: #2a2a2a;

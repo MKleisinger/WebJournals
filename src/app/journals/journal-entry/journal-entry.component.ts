@@ -41,13 +41,27 @@ export class JournalEntryComponent implements OnInit {
     });
     this.entryForm.journalId = this.journal.id;
 
-    this.journal.bullets?.forEach(bullet => {
-      const tag: JournalTag = { bullet: bullet, tag: ""};
-      this.entryForm.tags.push(tag);
+    this.route.queryParams.subscribe(params => {
+      if(params['entryId']) {
+        console.log("found params");
+        let entryId = params['entryId'];
+        this.journalService.getJournalEntry(this.journal.id, entryId).subscribe(entry => {
+          this.entryForm = entry;
+          console.log(this.entryForm);
+        });
+      }
     });
+
+    if(this.entryForm.tags.length == 0) {
+      this.journal.bullets?.forEach(bullet => {
+        const tag: JournalTag = { bullet: bullet, tag: ""};
+        this.entryForm.tags.push(tag);
+      });
+    }
   }
 
   public onEntryComplete(): void {
+    console.log(this.entryForm);
     this.journalService.addJournalEntry(this.entryForm);
     this.router.navigate([this.journalRoute]);
   }

@@ -6,11 +6,16 @@
         </div>
         <div class="card-body" *ngIf="this.entries">
             <a [routerLink]="['entry']"><button type="submit" class="btn btn-primary">Add Entry</button></a>
-            <div class="card" *ngFor="let entry of this.entries">
-                <h1 class="card-header">{{ entry.timeStamp | date:'short' }}</h1>
-                <div class="card-body">
-                </div>
+            <div>
+              <ol *ngFor="let entry of this.entries">
+                <li><a [routerLink]="['entry']" [queryParams]="{entryId: entry.id}"><h2>{{ entry.timeStamp | date:'short' }}</h2></a></li>
+              </ol>
             </div>
+            <!-- <div class="card" *ngFor="let entry of this.entries">
+                <div class="card-body">
+                  <h1 class="card-header">{{ entry.timeStamp | date:'short' }}</h1>
+                </div>
+            </div> -->
         </div>
     </div>
 </div>

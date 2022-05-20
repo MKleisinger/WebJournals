@@ -57,6 +57,13 @@ export class JournalService {
     return entries$;
   }
 
+  public getJournalEntry(journalId: string, journalEntryId: string) : Observable<JournalEntry> {
+    return this.getJournalEntries(journalId)
+      .pipe(
+        map(entries => entries.find(e => e.id === journalEntryId) as JournalEntry)
+      )
+  }
+
   public addJournalEntry(journalEntry: JournalEntry) : void {
     if(!journalEntry.id) {
       this.journalApi.createJournalEntry(journalEntry).subscribe({
