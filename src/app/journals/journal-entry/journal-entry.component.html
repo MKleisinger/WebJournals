@@ -1,15 +1,26 @@
 <div class="container">
     <div *ngIf="journal" class="card">
         <div class="card-header">
-            <h1>{{this.journal.title}}</h1>
-            <h5>{{ this.journal.subject }}</h5>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <h1>{{this.journal.title}}</h1>
+                <h5>{{ this.journal.subject }}</h5>
+              </div>
+              <div class="col">
+                <div class="text-end">
+                  <h3>{{ this.entryForm.timeStamp | date:'short' }}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="card-body">
             <div class="form">
                 <div class="mb-3">
                     <div *ngFor="let tag of entryForm.tags">
                         <label for="bullet">{{ tag.bullet.label }}</label>
-                        <input id="bullet" name="bullet" class="form-control" (ngModel)="tag.tag" />
+                        <input id="bullet" name="bullet" class="form-control" [(ngModel)]="tag.tag" />
                     </div>
                 </div>
                 <div class="mb-3">

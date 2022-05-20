@@ -22,7 +22,6 @@ export class JournalApiService {
   }
 
   private httpOptions(requestParameters: HttpParams): object {
-    console.log(this.httpHeaders);
     return {
       headers: this.httpHeaders,
       responseType: 'json',
@@ -47,8 +46,6 @@ export class JournalApiService {
   }
 
   updateJournal(journal: Journal) : Observable<Journal> {
-    console.log("calling backend update");
-    console.log(JSON.stringify(journal));
     return this.httpClient.put<Journal>(this.journalRoute, journal, this.httpOptions(new HttpParams()));
   }
 
